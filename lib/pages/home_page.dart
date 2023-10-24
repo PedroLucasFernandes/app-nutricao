@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
           left: 40,
           right: 40,
         ),
-        color: Colors.white,
+        color: Color(0XFF98B474),
 
         child: ListView(
           children: <Widget>[
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
               style: ButtonStyle(
                 elevation: MaterialStatePropertyAll(0),
                 overlayColor: MaterialStatePropertyAll(Colors.grey.withOpacity(0.2)),
-                backgroundColor: MaterialStatePropertyAll(Colors.white),
+                backgroundColor: MaterialStatePropertyAll(Color(0XFF98B474)),
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),

@@ -26,7 +26,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0XFFC1FF72),
         title: Text(
           "Cadastro de novo usuário",
           style: TextStyle(
@@ -47,7 +47,7 @@ class _SignupPageState extends State<SignupPage> {
           left: 40,
           right: 40,
         ),
-        color: Colors.white,
+        color: Color(0XFF98B474),
         child: ListView(
           children: <Widget>[
             Container(
@@ -162,7 +162,12 @@ class _SignupPageState extends State<SignupPage> {
                   Navigator.pushNamed(context, "/name");
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.black)
+                backgroundColor: MaterialStatePropertyAll(Color(0XFF478000)),
+                shape: MaterialStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
               ),
               child: Text(
                 "Continuar",
