@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               onPressed: () {
-        
+                Navigator.of(context).pushNamed("/login_page");
               },
               style: ButtonStyle(
                 elevation: MaterialStatePropertyAll(0),
