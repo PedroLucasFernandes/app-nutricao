@@ -50,6 +50,7 @@ class _SignupPageState extends State<SignupPage> {
         color: Color(0XFF98B474),
         child: ListView(
           children: <Widget>[
+            SizedBox(height: 20,),
             Container(
               child: Text(
                 "Nome de usuário e senha:",
