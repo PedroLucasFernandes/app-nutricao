@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:nutri_mais/pages/home_page.dart';
 
 class SignupPage extends StatefulWidget {
   SignupPage({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0XFFC1FF72),
+        backgroundColor: Color(0XFF98B474),
         title: Text(
           "Cadastro de novo usuário",
           style: TextStyle(
@@ -160,7 +161,7 @@ class _SignupPageState extends State<SignupPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                  Navigator.pushNamed(context, "/name");
+                  Navigator.pushNamed(context, "/home_page");
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Color(0XFF478000)),

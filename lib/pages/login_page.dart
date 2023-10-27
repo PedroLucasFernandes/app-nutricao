@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_mais/pages/home_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -8,7 +9,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0XFFC1FF72),
+        backgroundColor: Color(0XFF98B474),
         title: Text(
           "Faça seu Login",
           style: TextStyle(
@@ -72,7 +73,7 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 55,),
             ElevatedButton(
               onPressed: () {
-                  Navigator.pushNamed(context, "/name");
+                  Navigator.pushNamed(context, "/home_page");
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Color(0XFF478000)),
