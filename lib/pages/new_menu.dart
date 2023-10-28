@@ -47,6 +47,11 @@ class NovoCardapio extends StatelessWidget {
                         color: Color(0XFFC7E5A1),
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Digite aqui...",
+                        ),
+                      ),
                     ),
                     SizedBox(height: 12,),
                     Text(
@@ -64,6 +69,11 @@ class NovoCardapio extends StatelessWidget {
                         color: Color(0XFFC7E5A1),
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Digite aqui...",
+                        ),
+                      ),
                     ),
                     SizedBox(height: 12,),
                     Text(
@@ -80,6 +90,11 @@ class NovoCardapio extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Color(0XFFC7E5A1),
                         borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Digite aqui...",
+                        ),
                       ),
                     ),
                   ],

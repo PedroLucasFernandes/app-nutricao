@@ -9,7 +9,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0XFF98B474),
+        backgroundColor: Color(0XFFC7E5A1),
         title: Text(
           "Faça seu Login",
           style: TextStyle(
@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
           left: 40,
           right: 40,
         ),
-        color: Color(0XFF98B474),
+        color: Color(0XFFC7E5A1),
 
         child: ListView(
           children: <Widget>[

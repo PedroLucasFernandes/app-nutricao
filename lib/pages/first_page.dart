@@ -12,7 +12,7 @@ class FirstPage extends StatelessWidget {
           left: 40,
           right: 40,
         ),
-        color: Color(0XFF98B474),
+        color: Color(0XFFC7E5A1),
 
         child: ListView(
           children: <Widget>[
@@ -81,7 +81,7 @@ class FirstPage extends StatelessWidget {
               style: ButtonStyle(
                 elevation: MaterialStatePropertyAll(0),
                 overlayColor: MaterialStatePropertyAll(Colors.grey.withOpacity(0.2)),
-                backgroundColor: MaterialStatePropertyAll(Color(0XFF98B474)),
+                backgroundColor: MaterialStatePropertyAll(Color(0XFFC7E5A1)),
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),

@@ -27,7 +27,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0XFF98B474),
+        backgroundColor: Color(0XFFC7E5A1),
         title: Text(
           "Cadastro de novo usuário",
           style: TextStyle(
@@ -48,7 +48,7 @@ class _SignupPageState extends State<SignupPage> {
           left: 40,
           right: 40,
         ),
-        color: Color(0XFF98B474),
+        color: Color(0XFFC7E5A1),
         child: ListView(
           children: <Widget>[
             SizedBox(height: 20,),
