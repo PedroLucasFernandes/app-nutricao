@@ -35,10 +35,15 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Icon(
-              Icons.menu,
-              color: Colors.white,
-              size: 45.0,
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed("/credits_page");
+              },
+              child: Icon(
+                Icons.menu,
+                color: Color(0XFFC7E5A1),
+                size: 45.0,
+              ),
             ),
             Image.asset(
               "assets/logo.png",

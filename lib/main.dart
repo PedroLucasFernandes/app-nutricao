@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_mais/pages/credits_page.dart';
 import 'package:nutri_mais/pages/first_page.dart';
 import 'package:nutri_mais/pages/home.dart';
 import 'package:nutri_mais/pages/home_page.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         "/new_menu" : (context) => NovoCardapio(),
         "/new_food" : (context) => NovoAlimento(),
         "/search" : (context) => Consulta(),
+        "/credits_page" : (context) => CreditsPage(),
       },
       debugShowCheckedModeBanner: false,
       home: FirstPage(),
