@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     const List pages = <Widget>[
       Home(),
-      NovoCardapio(),
       NovoAlimento(),
+      NovoCardapio(),
       Consulta(),
     ];
 
@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
             Image.asset(
               "assets/perfil.png",
               width: 50.0,
+              color: Color(0XFFC1FF72),
             )
           ],
         ),
@@ -65,13 +66,13 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.home_outlined),
               label: "Home"),
           BottomNavigationBarItem(
+              activeIcon: Icon(Icons.coffee),
+              icon: Icon(Icons.coffee_outlined),
+              label: "Alimentos"),
+          BottomNavigationBarItem(
               activeIcon: Icon(Icons.food_bank),
               icon: Icon(Icons.food_bank_outlined),
               label: "Cardápios"),
-          BottomNavigationBarItem(
-              activeIcon: Icon(Icons.emoji_food_beverage),
-              icon: Icon(Icons.emoji_food_beverage_outlined),
-              label: "Alimentos"),
           BottomNavigationBarItem(
               activeIcon: Icon(Icons.search),
               icon: Icon(Icons.search_outlined),

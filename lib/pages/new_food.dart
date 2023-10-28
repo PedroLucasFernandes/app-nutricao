@@ -72,7 +72,7 @@ class NovoAlimento extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                        Navigator.pushNamed(context, "/home_page");
+                    
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Color(0XFF355211)),
