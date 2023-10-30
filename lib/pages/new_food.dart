@@ -21,6 +21,9 @@ class _NovoAlimentoState extends State<NovoAlimento> {
     }
   }
 
+  final dropValue = ValueNotifier("");
+  final dropOptions = ["Café", "Almoço", "Jantar"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,16 +85,35 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                   SizedBox(
                     height: 10,
                   ),
-                  TextFormField(
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      labelText: "Refeição",
-                      labelStyle: TextStyle(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Refeição:",
+                        style: TextStyle(
                         color: Color(0XFF478000),
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
+                        ),
                       ),
-                    ),
+                      SizedBox(width: 35,),
+                      ValueListenableBuilder(
+                        valueListenable: dropValue,
+                        builder: (BuildContext context, String value, _) {
+                          return DropdownButton <String>(
+                            hint: Text("Refeição"),
+                            value: (value.isEmpty) ? null : value,
+                            onChanged: (option) => dropValue.value = option.toString(),
+                            items: dropOptions
+                            .map((op) => DropdownMenuItem(
+                                  child: Text(op),
+                                  value: op,
+                                ))
+                            .toList(),
+                          );
+                        }
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 20,
