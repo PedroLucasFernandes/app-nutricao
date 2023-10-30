@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/form_field.dart';
 
 class NovoCardapio extends StatelessWidget {
   const NovoCardapio({super.key});
@@ -26,7 +27,7 @@ class NovoCardapio extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: Color(0XFFE4FDC5),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(22),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -46,13 +47,9 @@ class NovoCardapio extends StatelessWidget {
                         height: 110,
                         decoration: BoxDecoration(
                           color: Color(0XFFC7E5A1),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: "Digite aqui...",
-                          ),
-                        ),
+                        child: MyFormField(labelText: "Digite Aqui", maxLines: 4,),
                       ),
                       SizedBox(height: 12,),
                       Text(
@@ -68,13 +65,9 @@ class NovoCardapio extends StatelessWidget {
                         height: 110,
                         decoration: BoxDecoration(
                           color: Color(0XFFC7E5A1),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: "Digite aqui...",
-                          ),
-                        ),
+                        child: MyFormField(labelText: "Digite Aqui", maxLines: 4,),
                       ),
                       SizedBox(height: 12,),
                       Text(
@@ -90,14 +83,11 @@ class NovoCardapio extends StatelessWidget {
                         height: 110,
                         decoration: BoxDecoration(
                           color: Color(0XFFC7E5A1),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: "Digite aqui...",
-                          ),
-                        ),
+                        child: MyFormField(labelText: "Digite Aqui", maxLines: 4,),
                       ),
+                      
                     ],
                   ),
                 ),

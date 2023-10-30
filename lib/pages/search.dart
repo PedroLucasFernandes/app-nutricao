@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/form_field.dart';
+
 class Consulta extends StatelessWidget {
   const Consulta({super.key});
 
@@ -13,22 +15,7 @@ class Consulta extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0XFF355211), width: 2.0),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0XFF355211), width: 2.0),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  labelText: "Buscar...",
-                  suffixIcon: Icon(Icons.search),
-                  suffixIconColor: Color(0XFF355211),
-                  focusColor: Color(0XFF355211),
-                ),
-              ),
+              MyFormField(labelText: "Buscar", icon: Icons.search),
               SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
