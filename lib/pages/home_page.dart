@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    const List pages = <Widget>[
+    List pages = <Widget>[
       Home(),
       NovoAlimento(),
       NovoCardapio(),

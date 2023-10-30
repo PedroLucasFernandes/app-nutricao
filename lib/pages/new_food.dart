@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
-class NovoAlimento extends StatelessWidget {
-  const NovoAlimento({super.key});
+class NovoAlimento extends StatefulWidget {
+  @override
+  _NovoAlimentoState createState() => _NovoAlimentoState();
+}
+
+class _NovoAlimentoState extends State<NovoAlimento> {
+  XFile? _image;
+
+  Future _getImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = pickedFile;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +30,7 @@ class NovoAlimento extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: 20),
             Text(
               "Cadastro de Alimentos",
               style: TextStyle(
@@ -20,10 +39,16 @@ class NovoAlimento extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
-              width: 193,
-              height: 198,
-              child: Image.asset("assets/addimg.png")
+            InkWell(
+              onTap: () => _getImage(),
+              borderRadius: BorderRadius.circular(12),
+              child: _image == null
+                  ? Image.asset(
+                    "assets/addimg.png",
+                    width: 193,
+                    height: 198,
+                    )
+                  : Image.file(File(_image!.path)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 50, right: 50),
