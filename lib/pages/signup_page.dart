@@ -250,7 +250,7 @@ class _SignupPageState extends State<SignupPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Selecione uma imagem de perfil'),
-                          backgroundColor: Colors.red, // Define a cor vermelha
+                          backgroundColor: Colors.red,
                         ),
                       );
                     }

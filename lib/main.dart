@@ -4,6 +4,7 @@ import 'package:nutri_mais/pages/first_page.dart';
 import 'package:nutri_mais/pages/home.dart';
 import 'package:nutri_mais/pages/home_page.dart';
 import 'package:nutri_mais/pages/login_page.dart';
+import 'package:nutri_mais/pages/myprofile_page.dart';
 import 'package:nutri_mais/pages/new_food.dart';
 import 'package:nutri_mais/pages/new_menu.dart';
 import 'package:nutri_mais/pages/search.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         "/new_food" : (context) => NovoAlimento(),
         "/search" : (context) => Consulta(),
         "/credits_page" : (context) => CreditsPage(),
+        "/myprofile_page" :(context) => MyProfile(),
       },
       debugShowCheckedModeBanner: false,
       home: FirstPage(),

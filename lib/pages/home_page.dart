@@ -49,11 +49,16 @@ class _HomePageState extends State<HomePage> {
               "assets/logo.png",
               width: 135.0,
             ),
-            Image.asset(
-              "assets/perfil.png",
-              width: 50.0,
-              color: Color(0XFFC1FF72),
-            )
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed("/myprofile_page");
+              },
+              child: Icon(
+                Icons.person,
+                color: Color(0XFFC7E5A1),
+                size: 45.0,
+              ),
+            ),
           ],
         ),
       ),

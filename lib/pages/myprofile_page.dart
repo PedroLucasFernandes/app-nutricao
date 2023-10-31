@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CreditsPage extends StatelessWidget {
-  const CreditsPage({super.key});
+class MyProfile extends StatefulWidget {
+  const MyProfile({super.key});
 
+  @override
+  State<MyProfile> createState() => _MyProfileState();
+}
+
+class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +36,7 @@ class CreditsPage extends StatelessWidget {
           children: [
             SizedBox(height: 30,),
             Text(
-              "Desenvolvido por:",
+              "Meu Perfil:",
               style: TextStyle(
                 fontSize: 20,
                 color: Color(0XFF355211),
