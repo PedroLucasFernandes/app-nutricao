@@ -61,7 +61,7 @@ class _SignupPageState extends State<SignupPage> {
       ),
       backgroundColor: Color(0XFFC7E5A1),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: ListView(
@@ -115,7 +115,7 @@ class _SignupPageState extends State<SignupPage> {
                   if (value.length < 8 || value.length > 24) {
                     return 'A senha deve conter entre 8 e 24 caracteres';
                   }
-                  return null; // Retorna null se a validação passar
+                  return null;
                 },
                 obscureText: true,
               ),
@@ -208,12 +208,12 @@ class _SignupPageState extends State<SignupPage> {
                     children: [
                       _pickedImage != null
                           ? Image.file(
-                              File(_pickedImage!.path), // Carrega a imagem selecionada
+                              File(_pickedImage!.path),
                               height: 24,
                               width: 24,
                             )
                           : Image.asset(
-                              'assets/perfil.png', // Usa a imagem padrão se nenhuma imagem foi selecionada
+                              'assets/perfil.png',
                               height: 24,
                               width: 24,
                             ),

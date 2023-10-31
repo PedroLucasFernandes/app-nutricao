@@ -5,17 +5,20 @@ class MyFormField extends StatelessWidget {
   final IconData? icon;
   final int? maxLines;
   final TextEditingController? controller;
+  final bool? obscureText;
   const MyFormField({
       super.key, 
       required this.labelText, 
       this.icon, 
       this.maxLines = 1,
       this.controller,
+      this.obscureText,
     });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText ?? false,
       controller: controller,
       maxLines: maxLines,
       decoration: InputDecoration(
