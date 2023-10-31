@@ -30,5 +30,14 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <queries>
+            <intent>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="github" />
+                <data android:scheme="linkedin" />
+            </intent>
+        </queries>
     </application>
 </manifest>

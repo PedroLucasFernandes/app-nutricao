@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
   mask_text_input_formatter: ^2.5.0
   image_picker: ^1.0.4
+  url_launcher: ^6.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -66,6 +67,8 @@ flutter:
     - assets/perfil.png
     - assets/addimg.png
     - assets/myimage.jpeg
+    - assets/github.png
+    - assets/linkedin.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
