@@ -4,16 +4,19 @@ class MyFormField extends StatelessWidget {
   final String labelText;
   final IconData? icon;
   final int? maxLines;
+  final TextEditingController? controller;
   const MyFormField({
       super.key, 
       required this.labelText, 
       this.icon, 
-      this.maxLines = 1
+      this.maxLines = 1,
+      this.controller,
     });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       maxLines: maxLines,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(

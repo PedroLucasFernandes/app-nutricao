@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import '../widgets/form_field.dart';
 
-class NovoCardapio extends StatelessWidget {
+class NovoCardapio extends StatefulWidget {
   const NovoCardapio({super.key});
+
+  @override
+  _NovoCardapioState createState() => _NovoCardapioState();
+}
+
+class _NovoCardapioState extends State<NovoCardapio> {
+  final breakfastController = TextEditingController();
+  final lunchController = TextEditingController();
+  final dinnerController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +59,7 @@ class NovoCardapio extends StatelessWidget {
                           color: Color(0XFFC7E5A1),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: MyFormField(labelText: "Digite Aqui", maxLines: 4,),
+                        child: MyFormField(controller: breakfastController, labelText: "Digite Aqui", maxLines: 4,),
                       ),
                       SizedBox(height: 12,),
                       Text(
@@ -67,7 +77,7 @@ class NovoCardapio extends StatelessWidget {
                           color: Color(0XFFC7E5A1),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: MyFormField(labelText: "Digite Aqui", maxLines: 4,),
+                        child: MyFormField(controller: lunchController, labelText: "Digite Aqui", maxLines: 4,),
                       ),
                       SizedBox(height: 12,),
                       Text(
@@ -85,7 +95,7 @@ class NovoCardapio extends StatelessWidget {
                           color: Color(0XFFC7E5A1),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: MyFormField(labelText: "Digite Aqui", maxLines: 4,),
+                        child: MyFormField(controller: dinnerController, labelText: "Digite Aqui", maxLines: 4,),
                       ),
                       
                     ],
@@ -95,8 +105,35 @@ class NovoCardapio extends StatelessWidget {
               SizedBox(height: 12,),
               ElevatedButton(
                 onPressed: () {
+                      final breakfast = breakfastController.text;
+                      final lunch = lunchController.text;
+                      final dinner = dinnerController.text;
 
-                },
+                      if (breakfast.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Café não pode estar vazio.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else if (lunch.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Almoço não pode estar vazio.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else if (dinner.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Jantar não pode estar vazio.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else {
+
+                      }
+                    },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Color(0XFF355211)),
                   shape: MaterialStatePropertyAll(

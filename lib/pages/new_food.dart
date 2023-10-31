@@ -21,8 +21,8 @@ class _NovoAlimentoState extends State<NovoAlimento> {
     }
   }
 
-  TextEditingController nomeAlimentoController = TextEditingController();
-  TextEditingController categoriaController = TextEditingController();
+  TextEditingController foodNameController= TextEditingController();
+  TextEditingController typeController = TextEditingController();
 
   final dropValue = ValueNotifier("");
   final dropOptions = ["Café", "Almoço", "Jantar"];
@@ -61,7 +61,7 @@ class _NovoAlimentoState extends State<NovoAlimento> {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: nomeAlimentoController,
+                    controller: foodNameController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       labelText: "Nome do Alimento",
@@ -76,7 +76,7 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                     height: 10,
                   ),
                   TextFormField(
-                    controller: categoriaController,
+                    controller: typeController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       labelText: "Categoria",
@@ -125,32 +125,32 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      final nomeAlimento = nomeAlimentoController.text;
-                      final categoria = categoriaController.text;
-                      final refeicao = dropValue.value;
+                      final foodname = foodNameController.text;
+                      final type = typeController.text;
+                      final meal = dropValue.value;
 
-                      if (nomeAlimento.isEmpty) {
+                      if (foodname.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Nome do Alimento não pode ser vazio.'),
                             backgroundColor: Colors.red,
                           ),
                         );
-                      } else if (categoria.isEmpty) {
+                      } else if (type.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Categoria não pode ser vazia.'),
                             backgroundColor: Colors.red,
                           ),
                         );
-                      } else if (refeicao.isEmpty) {
+                      } else if (meal.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Selecione uma Refeição.'),
                             backgroundColor: Colors.red,
                           ),
                         );
-                      } else if (refeicao != "Café" && refeicao != "Almoço" && refeicao != "Jantar") {
+                      } else if (meal != "Café" && meal != "Almoço" && meal != "Jantar") {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Refeição deve ser Café, Almoço ou Jantar.'),
