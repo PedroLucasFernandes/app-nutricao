@@ -21,6 +21,9 @@ class _NovoAlimentoState extends State<NovoAlimento> {
     }
   }
 
+  TextEditingController nomeAlimentoController = TextEditingController();
+  TextEditingController categoriaController = TextEditingController();
+
   final dropValue = ValueNotifier("");
   final dropOptions = ["Café", "Almoço", "Jantar"];
 
@@ -58,6 +61,7 @@ class _NovoAlimentoState extends State<NovoAlimento> {
               child: Column(
                 children: [
                   TextFormField(
+                    controller: nomeAlimentoController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       labelText: "Nome do Alimento",
@@ -72,6 +76,7 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                     height: 10,
                   ),
                   TextFormField(
+                    controller: categoriaController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       labelText: "Categoria",
@@ -120,7 +125,48 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                    
+                      final nomeAlimento = nomeAlimentoController.text;
+                      final categoria = categoriaController.text;
+                      final refeicao = dropValue.value;
+
+                      if (nomeAlimento.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Nome do Alimento não pode ser vazio.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else if (categoria.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Categoria não pode ser vazia.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else if (refeicao.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Selecione uma Refeição.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else if (refeicao != "Café" && refeicao != "Almoço" && refeicao != "Jantar") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Refeição deve ser Café, Almoço ou Jantar.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else if (_image == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Selecione uma imagem do alimento'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else {
+
+                      }
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Color(0XFF355211)),
