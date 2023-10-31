@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:nutri_mais/pages/home_page.dart';
 
 class SignupPage extends StatefulWidget {
@@ -16,10 +18,25 @@ class _SignupPageState extends State<SignupPage> {
     filter: {"#": RegExp(r'[0-9]')},
   );
 
+  final _formKey = GlobalKey<FormState>();
+
+  XFile? _pickedImage;
+
   @override
   void dispose() {
     _dateController.dispose();
     super.dispose();
+  }
+
+  void _pickImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      setState(() {
+        _pickedImage = pickedImage;
+      });
+    }
   }
 
   @override
@@ -42,145 +59,222 @@ class _SignupPageState extends State<SignupPage> {
         },
         ),
       ),
-      body: Container(
-        padding: EdgeInsets.only(
-          top: 20,
-          left: 40,
-          right: 40,
-        ),
-        color: Color(0XFFC7E5A1),
-        child: ListView(
-          children: <Widget>[
-            SizedBox(height: 20,),
-            Container(
-              child: Text(
-                "Nome de usuário e senha:",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            TextFormField(
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                labelText: "Nome de Usuário",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "Senha",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              obscureText: true,
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Container(
-              child: Text(
-                "Informações para o perfil:",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            TextFormField(
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                labelText: "Seu nome completo",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              keyboardType: TextInputType.datetime,
-              controller: _dateController,
-              inputFormatters: [_dateMaskFormatter],
-              decoration: InputDecoration(
-                labelText: "Sua data de nascimento (DD/MM/AAAA)",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 18,
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Color(0XFFFC1FF72))
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/perfil.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Sua foto (será usada no perfil)",
-                  style: TextStyle(color: Colors.black),
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
-              
-              }
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                  Navigator.pushNamed(context, "/home_page");
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Color(0XFF478000)),
-                shape: MaterialStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+      backgroundColor: Color(0XFFC7E5A1),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              SizedBox(height: 20,),
+              Container(
+                child: Text(
+                  "Nome de usuário e senha:",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              child: Text(
-                "Continuar",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              TextFormField(
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  labelText: "Nome de Usuário",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'O nome de usuário não pode ser vazio';
+                  }
+                  if (value.length > 24) {
+                    return 'O nome de usuário deve conter no máximo 24 caracteres';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Senha",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'A senha deve conter entre 8 e 24 caracteres';
+                  }
+                  if (value.length < 8 || value.length > 24) {
+                    return 'A senha deve conter entre 8 e 24 caracteres';
+                  }
+                  return null; // Retorna null se a validação passar
+                },
+                obscureText: true,
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Container(
+                child: Text(
+                  "Informações para o perfil:",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-          ],
+              TextFormField(
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  labelText: "Seu nome completo",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Seu nome não pode ser vazio';
+                  }
+                  if (value.contains(RegExp(r'[0-9]'))) {
+                    return 'Seu nome não pode conter números';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.datetime,
+                controller: _dateController,
+                inputFormatters: [_dateMaskFormatter],
+                decoration: InputDecoration(
+                  labelText: "Sua data de nascimento (DD/MM/AAAA)",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Insira sua data de nascimento no formato DD/MM/AAAA';
+                  }
+      
+                  final datePattern = r'^\d{2}/\d{2}/\d{4}$';
+      
+                  if (!RegExp(datePattern).hasMatch(value)) {
+                    return 'Formato de data inválido. Use DD/MM/AAAA';
+                  }
+      
+                  final parts = value.split('/');
+      
+                  final day = int.tryParse(parts[0]);
+                  final month = int.tryParse(parts[1]);
+                  final year = int.tryParse(parts[2]);
+      
+                  if (day == null || month == null || year == null) {
+                    return 'Data inválida';
+                  }
+      
+                  if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2100) {
+                    return 'Data fora dos limites válidos';
+                  }
+      
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: 18,
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Color(0XFFFC1FF72))
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                  Row(
+                    children: [
+                      _pickedImage != null
+                          ? Image.file(
+                              File(_pickedImage!.path), // Carrega a imagem selecionada
+                              height: 24,
+                              width: 24,
+                            )
+                          : Image.asset(
+                              'assets/perfil.png', // Usa a imagem padrão se nenhuma imagem foi selecionada
+                              height: 24,
+                              width: 24,
+                            ),
+                      SizedBox(width: 8),
+                    ],
+                  ),
+                  Text(
+                    "Sua foto (será usada no perfil)",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(width: 32),
+                ],
+              ),
+                onPressed: () async {
+                final picker = ImagePicker();
+                final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+      
+                if (pickedFile != null) {
+                  setState(() {
+                    _pickedImage = pickedFile;
+                  });
+                }
+              },
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+                    if (_pickedImage != null) {
+                      Navigator.pushNamed(context, "/home_page");
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Selecione uma imagem de perfil'),
+                          backgroundColor: Colors.red, // Define a cor vermelha
+                        ),
+                      );
+                    }
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Color(0XFF478000)),
+                  shape: MaterialStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                ),
+                child: Text(
+                  "Continuar",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
