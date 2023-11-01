@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutri_mais/pages/credits_page.dart';
 import 'package:nutri_mais/pages/first_page.dart';
-import 'package:nutri_mais/pages/home.dart';
 import 'package:nutri_mais/pages/home_page.dart';
 import 'package:nutri_mais/pages/login_page.dart';
 import 'package:nutri_mais/pages/myprofile_page.dart';

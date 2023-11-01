@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nutri_mais/pages/home_page.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

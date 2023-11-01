@@ -54,7 +54,11 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                     width: 193,
                     height: 198,
                     )
-                  : Image.file(File(_image!.path)),
+                  : Image.file(
+                    File(_image!.path),
+                    width: 193,
+                    height: 198,
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 50, right: 50),
