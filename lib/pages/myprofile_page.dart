@@ -278,9 +278,7 @@ class _MyProfileState extends State<MyProfile> {
                   Container(
                     width: 200,
                     child: ElevatedButton(
-                      onPressed: (){
-                        
-                      },
+                      onPressed: () => Navigator.of(context).pushReplacementNamed("/first_page"),
                       style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(Colors.white),
                         shape: MaterialStatePropertyAll(

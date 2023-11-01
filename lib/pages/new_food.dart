@@ -24,9 +24,11 @@ class _NovoAlimentoState extends State<NovoAlimento> {
   TextEditingController foodNameController= TextEditingController();
   TextEditingController typeController = TextEditingController();
 
-  final dropValue = ValueNotifier("");
-  final dropOptions = ["Café", "Almoço", "Jantar"];
-
+  final typedropValue = ValueNotifier("");
+  final typeDropOptions = ["Bebida", "Proteína", "Carboidrato", "Fruta", "Grão"];
+  final mealdropValue = ValueNotifier("");
+  final mealDropOptions = ["Café", "Almoço", "Jantar"];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,17 +81,35 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                   SizedBox(
                     height: 10,
                   ),
-                  TextFormField(
-                    controller: typeController,
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      labelText: "Categoria",
-                      labelStyle: TextStyle(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Tipo:",
+                        style: TextStyle(
                         color: Color(0XFF478000),
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
+                        ),
                       ),
-                    ),
+                      SizedBox(width: 75,),
+                      ValueListenableBuilder(
+                        valueListenable: typedropValue,
+                        builder: (BuildContext context, String value, _) {
+                          return DropdownButton <String>(
+                            hint: Text("Tipo"),
+                            value: (value.isEmpty) ? null : value,
+                            onChanged: (option) => typedropValue.value = option.toString(),
+                            items: typeDropOptions
+                            .map((op) => DropdownMenuItem(
+                                  child: Text(op),
+                                  value: op,
+                                ))
+                            .toList(),
+                          );
+                        }
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 10,
@@ -107,13 +127,13 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                       ),
                       SizedBox(width: 35,),
                       ValueListenableBuilder(
-                        valueListenable: dropValue,
+                        valueListenable: mealdropValue,
                         builder: (BuildContext context, String value, _) {
                           return DropdownButton <String>(
                             hint: Text("Refeição"),
                             value: (value.isEmpty) ? null : value,
-                            onChanged: (option) => dropValue.value = option.toString(),
-                            items: dropOptions
+                            onChanged: (option) => mealdropValue.value = option.toString(),
+                            items: mealDropOptions
                             .map((op) => DropdownMenuItem(
                                   child: Text(op),
                                   value: op,
@@ -130,8 +150,8 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                   ElevatedButton(
                     onPressed: () {
                       final foodname = foodNameController.text;
-                      final type = typeController.text;
-                      final meal = dropValue.value;
+                      final type = typedropValue.value;
+                      final meal = mealdropValue.value;
 
                       if (foodname.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -143,7 +163,14 @@ class _NovoAlimentoState extends State<NovoAlimento> {
                       } else if (type.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('Categoria não pode ser vazia.'),
+                            content: Text('Selecione um Tipo.'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else if (type != "Bebida" && type != "Proteína" && type != "Grão" && type != "Carboidrato" && type != "Fruta") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Tipo deve ser Bebida, Proteína, Grão, Carboidrato ou Fruta.'),
                             backgroundColor: Colors.red,
                           ),
                         );
