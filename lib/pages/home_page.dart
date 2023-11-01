@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List pages = <Widget>[
       Home(),
-      NovoAlimento(),
-      NovoCardapio(),
+      NewFood(),
+      NewMenu(),
       Consulta(),
     ];
 

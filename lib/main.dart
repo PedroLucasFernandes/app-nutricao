@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nutri_mais/pages/credits_page.dart';
 import 'package:nutri_mais/pages/first_page.dart';
 import 'package:nutri_mais/pages/home_page.dart';
+import 'package:nutri_mais/pages/indication_page.dart';
 import 'package:nutri_mais/pages/login_page.dart';
 import 'package:nutri_mais/pages/myprofile_page.dart';
 import 'package:nutri_mais/pages/new_food.dart';
@@ -22,11 +23,12 @@ class MyApp extends StatelessWidget {
         "/signup_page" : (context) => SignupPage(),
         "/login_page" : (context) => LoginPage(),
         "/home_page" : (context) => HomePage(),
-        "/new_menu" : (context) => NovoCardapio(),
-        "/new_food" : (context) => NovoAlimento(),
+        "/new_food" : (context) => NewFood(),
+        "/new_menu" : (context) => NewMenu(),
+        "/indication_page" : (context) => IndicationPage(),
         "/search" : (context) => Consulta(),
         "/credits_page" : (context) => CreditsPage(),
-        "/myprofile_page" :(context) => MyProfile(),
+        "/myprofile_page" : (context) => MyProfile(),
       },
       debugShowCheckedModeBanner: false,
       home: FirstPage(),

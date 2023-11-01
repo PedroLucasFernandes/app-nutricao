@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../widgets/form_field.dart';
 
-class NovoCardapio extends StatefulWidget {
-  const NovoCardapio({super.key});
+class NewMenu extends StatefulWidget {
+  const NewMenu({super.key});
 
   @override
-  _NovoCardapioState createState() => _NovoCardapioState();
+  _NewMenuState createState() => _NewMenuState();
 }
 
-class _NovoCardapioState extends State<NovoCardapio> {
+class _NewMenuState extends State<NewMenu> {
   final breakfastController = TextEditingController();
   final lunchController = TextEditingController();
   final dinnerController = TextEditingController();
@@ -105,35 +105,56 @@ class _NovoCardapioState extends State<NovoCardapio> {
               SizedBox(height: 12,),
               ElevatedButton(
                 onPressed: () {
-                      final breakfast = breakfastController.text;
-                      final lunch = lunchController.text;
-                      final dinner = dinnerController.text;
+                  Navigator.pushNamed(context, "/indication_page");
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Color(0XFF355211)),
+                  shape: MaterialStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+                child: Text(
+                  "Veja Indicações",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: 12,),
+              ElevatedButton(
+                onPressed: () {
+                  final breakfast = breakfastController.text;
+                  final lunch = lunchController.text;
+                  final dinner = dinnerController.text;
 
-                      if (breakfast.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Café não pode estar vazio.'),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      } else if (lunch.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Almoço não pode estar vazio.'),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      } else if (dinner.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Jantar não pode estar vazio.'),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      } else {
+                  if (breakfast.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Café não pode estar vazio.'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  } else if (lunch.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Almoço não pode estar vazio.'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  } else if (dinner.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Jantar não pode estar vazio.'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  } else {
 
-                      }
-                    },
+                  }
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Color(0XFF355211)),
                   shape: MaterialStatePropertyAll(

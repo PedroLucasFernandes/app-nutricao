@@ -48,7 +48,7 @@ class Home extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             width: 124,
-                            height: 151,
+                            height: 125,
                           ),
                         ),
                         Container(

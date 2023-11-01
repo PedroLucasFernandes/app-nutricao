@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-class NovoAlimento extends StatefulWidget {
+class NewFood extends StatefulWidget {
   @override
-  _NovoAlimentoState createState() => _NovoAlimentoState();
+  _NewFoodState createState() => _NewFoodState();
 }
 
-class _NovoAlimentoState extends State<NovoAlimento> {
+class _NewFoodState extends State<NewFood> {
   XFile? _image;
 
   Future _getImage() async {
