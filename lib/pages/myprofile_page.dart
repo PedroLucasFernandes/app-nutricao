@@ -10,10 +10,19 @@ class MyProfile extends StatefulWidget {
 class _MyProfileState extends State<MyProfile> {
 
   final _formKey = GlobalKey<FormState>();
+  final String username = "seu-usuario";
+  final String password = "sua-senha";
+
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController newpassordController = TextEditingController();
+
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color(0XFF355211),
         leading: InkWell(
@@ -64,6 +73,14 @@ class _MyProfileState extends State<MyProfile> {
                     ),
                   ),
                   Text(
+                    "@$username",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0XFF355211),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
                     "Seu Nome Completo",
                     style: TextStyle(
                       fontSize: 20,
@@ -72,68 +89,214 @@ class _MyProfileState extends State<MyProfile> {
                     ),
                   ),
                   SizedBox(height: 35,),
-                  TextFormField(
-                    keyboardType: TextInputType.name,
-                    decoration: InputDecoration(
-                      labelText: "Nome de Usuário",
-                      labelStyle: TextStyle(
-                        color: Colors.black38,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
+                  Container(
+                    width: 200,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: SizedBox(
+                                height: 215,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Altere seu usuário:",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    TextFormField(
+                                      controller: usernameController,
+                                      decoration: InputDecoration(
+                                        labelText: "Novo nome de usuário",
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'O nome de usuário não pode ser vazio';
+                                        }
+                                        if (value.length > 24) {
+                                          return 'O nome de usuário deve conter no máximo 24 caracteres';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    SizedBox(height: 20,),
+                                    Text(
+                                      "Sua senha atual:",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    TextFormField(
+                                      controller: passwordController,
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                        labelText: "Senha Atual",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Cancelar'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    if (passwordController.text == password) {
+                                      if (_formKey.currentState != null ||
+                                          _formKey.currentState!.validate()) {
+                                        Navigator.pop(context);
+                                      }
+                                    } else {
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        content: Text('Senha incorreta'),
+                                      ));
+                                    }
+                                  },
+                                  child: Text('Salvar Alteração'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Color(0XFF355211)),
+                        shape: MaterialStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
                       ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'O nome de usuário não pode ser vazio';
-                      }
-                      if (value.length > 24) {
-                        return 'O nome de usuário deve conter no máximo 24 caracteres';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 30,),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: "Senha",
-                      labelStyle: TextStyle(
-                        color: Colors.black38,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'A senha deve conter entre 8 e 24 caracteres';
-                      }
-                      if (value.length < 8 || value.length > 24) {
-                        return 'A senha deve conter entre 8 e 24 caracteres';
-                      }
-                      return null;
-                    },
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 30,),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-
-                      }
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Color(0XFF355211)),
-                      shape: MaterialStatePropertyAll(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                      child: Text(
+                        "Alterar Usuário",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                    child: Text(
-                      "Salvar Alterações",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                  ),
+                  SizedBox(height: 10,),
+                  Container(
+                    width: 200,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: SizedBox(
+                                height: 215,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Altere sua senha:",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    TextFormField(
+                                      controller: newpassordController,
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                        labelText: "Nova senha",
+                                      ),
+                                    ),
+                                    SizedBox(height: 20,),
+                                    Text(
+                                      "Sua senha atual:",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    TextFormField(
+                                      controller: passwordController,
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                        labelText: "Senha Atual",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Cancelar'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    if (passwordController.text == password) {
+                                      if (_formKey.currentState != null ||
+                                          _formKey.currentState!.validate()) {
+                                        Navigator.pop(context);
+                                      }
+                                    } else {
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        content: Text('Senha incorreta'),
+                                      ));
+                                    }
+                                  },
+                                  child: Text('Salvar Alteração'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Color(0XFF355211)),
+                        shape: MaterialStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        "Alterar Senha",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 50,),
+                  Container(
+                    width: 200,
+                    child: ElevatedButton(
+                      onPressed: (){
+                        
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.white),
+                        shape: MaterialStatePropertyAll(
+                          RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        "Fazer Logout",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
                       ),
                     ),
                   ),

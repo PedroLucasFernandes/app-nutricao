@@ -28,9 +28,8 @@ class CreditsPage extends StatelessWidget {
           width: 135.0,
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        color: Color(0XFFE4FDC5),
+      backgroundColor: Color(0XFFC7E5A1),
+      body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: 30,),
