@@ -254,7 +254,7 @@ class _SignupPageState extends State<SignupPage> {
                 onPressed: () async {
                   if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                     if (_pickedImage != null) {
-                      await _insereRegistroUsers();
+                      await _insertUsers();
                       Navigator.pushNamed(context, "/home_page");
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -290,8 +290,8 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  // Future<void> _insereRegistroUsers() async {
-  //   await Database.insereRegistroUsers(
+  // Future<void> _insertUsers() async {
+  //   await Database.insertUsers(
   //       _nameController.text, _usernameController.text, _passwordController.text, _birthdateController.datetime, _photoController.text);
   // }
 }
