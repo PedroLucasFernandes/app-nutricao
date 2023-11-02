@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:nutri_mais/database_helper.dart';
 
 class SignupPage extends StatefulWidget {
   SignupPage({Key? key}) : super(key: key);
@@ -10,8 +11,14 @@ class SignupPage extends StatefulWidget {
   _SignupPageState createState() => _SignupPageState();
 }
 
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _birthdateController = TextEditingController();
+  final TextEditingController _photoController = TextEditingController();
+
 class _SignupPageState extends State<SignupPage> {
-  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _birthdateController = TextEditingController();
   final _dateMaskFormatter = MaskTextInputFormatter(
     mask: '##/##/####',
     filter: {"#": RegExp(r'[0-9]')},
@@ -23,7 +30,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   void dispose() {
-    _dateController.dispose();
+    _birthdateController.dispose();
     super.dispose();
   }
 
@@ -76,6 +83,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               TextFormField(
+                controller: _usernameController,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   labelText: "Nome de Usuário",
@@ -99,6 +107,7 @@ class _SignupPageState extends State<SignupPage> {
                 height: 10,
               ),
               TextFormField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: "Senha",
                   labelStyle: TextStyle(
@@ -131,6 +140,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               TextFormField(
+                controller: _nameController,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   labelText: "Seu nome completo",
@@ -154,8 +164,8 @@ class _SignupPageState extends State<SignupPage> {
                 height: 10,
               ),
               TextFormField(
+                controller: _birthdateController,
                 keyboardType: TextInputType.datetime,
-                controller: _dateController,
                 inputFormatters: [_dateMaskFormatter],
                 decoration: InputDecoration(
                   labelText: "Sua data de nascimento (DD/MM/AAAA)",
@@ -241,9 +251,10 @@ class _SignupPageState extends State<SignupPage> {
                 height: 50,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                     if (_pickedImage != null) {
+                      await _insereRegistroUsers();
                       Navigator.pushNamed(context, "/home_page");
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -278,4 +289,9 @@ class _SignupPageState extends State<SignupPage> {
       ),
     );
   }
+
+  // Future<void> _insereRegistroUsers() async {
+  //   await Database.insereRegistroUsers(
+  //       _nameController.text, _usernameController.text, _passwordController.text, _birthdateController.datetime, _photoController.text);
+  // }
 }
