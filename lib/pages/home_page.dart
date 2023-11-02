@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nutri_mais/pages/home.dart';
-import 'package:nutri_mais/pages/new_food.dart';
-import 'package:nutri_mais/pages/new_menu.dart';
+import 'package:nutri_mais/pages/my_foods.dart';
+import 'package:nutri_mais/pages/my_menus.dart';
 import 'package:nutri_mais/pages/search.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List pages = <Widget>[
       Home(),
-      NewFood(),
-      NewMenu(),
+      MyFoods(),
+      MyMenus(),
       Consulta(),
     ];
 
