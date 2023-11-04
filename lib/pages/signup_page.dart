@@ -15,7 +15,6 @@ class SignupPage extends StatefulWidget {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _birthdateController = TextEditingController();
-  final TextEditingController _photoController = TextEditingController();
 
 class _SignupPageState extends State<SignupPage> {
   final TextEditingController _birthdateController = TextEditingController();
@@ -292,6 +291,6 @@ class _SignupPageState extends State<SignupPage> {
 
   Future<void> _insertUsers() async {
     await Database.insertUsers(
-        _nameController.text, _usernameController.text, _passwordController.text, _birthdateController.text, _photoController.text);
+        _nameController.text, _usernameController.text, _passwordController.text, _birthdateController.text, _pickedImage!.path);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:nutri_mais/database_helper.dart';
 
 class NewFood extends StatefulWidget {
   @override
@@ -167,10 +168,12 @@ class _NewFoodState extends State<NewFood> {
                       height: 20,
                     ),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async  {
                         final foodname = foodNameController.text;
                         final type = typedropValue.value;
                         final meal = mealdropValue.value;
+
+                        await _insertFoods(type, meal);
         
                         if (foodname.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -241,6 +244,12 @@ class _NewFoodState extends State<NewFood> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _insertFoods(type, meal) async {
+    await Database.insertFoods(
+      foodNameController.text, type, meal, _image!.path
     );
   }
 }
