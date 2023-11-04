@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_mais/database_helper.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -42,6 +46,7 @@ class LoginPage extends StatelessWidget {
               height: 20,
             ),
             TextFormField(
+              controller: _usernameController,
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
                 labelText: "Nome de Usuário",
@@ -59,6 +64,7 @@ class LoginPage extends StatelessWidget {
               height: 10,
             ),
             TextFormField(
+              controller: _passwordController,
               decoration: InputDecoration(
                 labelText: "Senha",
                 labelStyle: TextStyle(
@@ -71,8 +77,12 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 55,),
             ElevatedButton(
-              onPressed: () {
-                  Navigator.pushNamed(context, "/home_page");
+              onPressed: () async {
+                  if(await Database().isUserValid(_usernameController.text, _passwordController.text)) {
+                    Navigator.pushNamed(context, "/home_page");
+                  } else {
+                    content: Text('Usuário ou senha incorretos');
+                  }
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Color(0XFF478000)),
