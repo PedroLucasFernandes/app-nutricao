@@ -290,8 +290,8 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  // Future<void> _insertUsers() async {
-  //   await Database.insertUsers(
-  //       _nameController.text, _usernameController.text, _passwordController.text, _birthdateController.datetime, _photoController.text);
-  // }
+  Future<void> _insertUsers() async {
+    await Database.insertUsers(
+        _nameController.text, _usernameController.text, _passwordController.text, _birthdateController.text, _photoController.text);
+  }
 }

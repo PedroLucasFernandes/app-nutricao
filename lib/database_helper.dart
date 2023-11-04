@@ -46,10 +46,10 @@ class Database {
   }
 
   // Insere um novo registro
-  static Future<int> insertUsers(String name, String username, String password, DateTime birthdate, String photo) async {
+  static Future<int> insertUsers(String name, String username, String password, String birthdate, String photo) async {
     final database = await Database.database();
 
-    final data = {'name': name, 'username': username, 'password': password, 'birthdate': birthdate, 'photo': photo, 'createdAt': DateTime.now().toString()};
+    final data = {'name': name, 'username': username, 'password': password, 'birthdate': DateTime.parse(birthdate), 'photo': photo, 'createdAt': DateTime.now().toString()};
 
     final id = await database.insert('users', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
