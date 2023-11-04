@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:nutri_mais/database_helper.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
-  @override
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  LoginPage({super.key});
+
+  @override
+  
 
   Widget build(BuildContext context) {
     return Scaffold(
