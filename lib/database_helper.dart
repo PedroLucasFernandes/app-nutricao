@@ -49,14 +49,14 @@ class Database {
   static Future<int> insertUsers(String name, String username, String password, String birthdate, String photo) async {
     final database = await Database.database();
 
-    final data = {'name': name, 'username': username, 'password': password, 'birthdate': DateTime.parse(birthdate), 'photo': photo, 'createdAt': DateTime.now().toString()};
+    final data = {'name': name, 'username': username, 'password': password, 'birthdate': DateTime.tryParse(birthdate), 'photo': photo, 'createdAt': DateTime.now().toString()};
 
     final id = await database.insert('users', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
     return id;
   }
 
-  static Future<int> insertFoods(String name, String category, String type, String? photo) async {
+  static Future<int> insertFoods(String name, String category, String type, String photo) async {
     final database = await Database.database();
 
     final data = {'name': name, 'category': category, 'type': type, 'photo': photo, 'createdAt': DateTime.now().toString()};
