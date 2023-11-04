@@ -3,7 +3,28 @@ import 'package:sqflite/sqflite.dart' as sql;
 
 class Database {
   static Future<void> createTables(sql.Database database) async {
-    await database.execute("""CREATE TABLE users(
+    await database.execute("""
+      CREATE TABLE menus(
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        name TEXT,
+        createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+      );
+    """);
+
+    await database.execute("""
+      CREATE TABLE foods(
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        name TEXT,
+        category TEXT,
+        type TEXT,
+        photo TEXT,
+        createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (menus_id) REFERENCES menus(id)
+      );
+    """);
+
+    await database.execute("""
+      CREATE TABLE users(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         name TEXT,
         username TEXT,
@@ -11,28 +32,10 @@ class Database {
         birthdate DATETIME,
         photo TEXT,
         createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (foods_id) REFERENCES foods(id)
+        FOREIGN KEY (foods_id) REFERENCES foods(id),
         FOREIGN KEY (menus_id) REFERENCES menus(id)
-      )""");
-
-    await database.execute("""CREATE TABLE foods(
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        name TEXT,
-        category TEXT,
-        type TEXT,
-        photo TEXT,
-        createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (users_id) REFERENCES users(id)
-        FOREIGN KEY (menus_id) REFERENCES menus(id)
-      )""");
-
-    await database.execute("""CREATE TABLE menus(
-        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        name TEXT,
-        createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (foods_id) REFERENCES foods(id)
-        FOREIGN KEY (users_id) REFERENCES users(id)
-      )""");
+      );
+    """);
   }
 
   static Future<sql.Database> database() async {
@@ -168,5 +171,15 @@ class Database {
     } catch (err) {
       debugPrint("Ocorreu algum erro ao remover o registro: $err");
     }
+  }
+
+  Future<bool> isUserValid(String username, String password) async {
+    final database = await Database.database();
+    final queryResult = await database.rawQuery(
+      'SELECT * FROM users WHERE username = ? AND password = ?',
+      [username, password],
+    );
+
+    return queryResult.isNotEmpty;
   }
 }
