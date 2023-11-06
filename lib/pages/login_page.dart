@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nutri_mais/database_helper.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController _usernameController = TextEditingController();
@@ -79,12 +78,8 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 55,),
             ElevatedButton(
-              onPressed: () async {
-                  if(await Database().isUserValid(_usernameController.text, _passwordController.text)) {
-                    Navigator.pushNamed(context, "/home_page");
-                  } else {
-                    content: Text('Usuário ou senha incorretos');
-                  }
+              onPressed: () {
+                Navigator.pushNamed(context, "/home_page");     
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Color(0XFF478000)),

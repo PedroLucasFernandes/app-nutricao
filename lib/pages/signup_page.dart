@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:nutri_mais/database_helper.dart';
 
 class SignupPage extends StatefulWidget {
   SignupPage({Key? key}) : super(key: key);
@@ -253,7 +252,6 @@ class _SignupPageState extends State<SignupPage> {
                 onPressed: () async {
                   if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                     if (_pickedImage != null) {
-                      await _insertUsers();
                       Navigator.pushNamed(context, "/home_page");
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -287,10 +285,5 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),
     );
-  }
-
-  Future<void> _insertUsers() async {
-    await Database.insertUsers(
-        _nameController.text, _usernameController.text, _passwordController.text, _birthdateController.text, _pickedImage!.path);
   }
 }
