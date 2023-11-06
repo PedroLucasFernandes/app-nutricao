@@ -6,12 +6,14 @@ class Foods extends StatelessWidget {
   final Image? image;
   final String type;
   final String meal;
+  final bool isMy;
   const Foods({
       super.key,
       this.image, 
       required this.name, 
       required this.type, 
-      required this.meal, 
+      required this.meal,
+      required this.isMy, 
     });
 
   @override
@@ -52,7 +54,7 @@ class Foods extends StatelessWidget {
                 Text(
                   "Refeição: $meal",
                 ),
-                Row(
+                isMy ? Row(
                   children: [
                     IconButton(
                       icon: Icon(
@@ -76,6 +78,7 @@ class Foods extends StatelessWidget {
                     ),
                   ],
                 )
+                : SizedBox()
               ],
             ),
           ),

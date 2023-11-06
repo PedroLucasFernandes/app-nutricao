@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_mais/widgets/foods.dart';
+import 'package:nutri_mais/widgets/menu.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -33,45 +35,7 @@ class Home extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 8,),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color(0XFFE4FDC5),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            width: 124,
-                            height: 125,
-                          ),
-                        ),
-                        Container(
-                          height: 151,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                              "Nome: Hambúrguer",
-                              ),
-                              Text(
-                                "Categoria: Carboidrato",
-                              ),
-                              Text(
-                                "Refeição: Janta",
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  Foods(name: "Hambúrguer", type: "Carboidrato", meal: "Jantar", isMy: false,)
                 ],
               ),
               SizedBox(height: 20,),
@@ -105,56 +69,7 @@ class Home extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Café:",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0XFF355211),
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0XFFC7E5A1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          SizedBox(height: 12,),
-                          Text(
-                            "Almoço:",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0XFF355211),
-                            ),  
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0XFFC7E5A1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          SizedBox(height: 12,),
-                          Text(
-                            "Jantar:",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0XFF355211),
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0XFFC7E5A1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
+                          Menu(breakfast: "2 ovos cozidos", lunch: "Arroz", dinner: "Pizza", isMy: false)
                         ],
                       ),
                     ),

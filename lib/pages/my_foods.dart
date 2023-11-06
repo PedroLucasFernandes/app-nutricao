@@ -40,13 +40,13 @@ class _MyFoodsState extends State<MyFoods> {
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
-                        Foods(name: "Tomate", type: "Fruta", meal: "Almoço"),
+                        Foods(name: "Tomate", type: "Fruta", meal: "Almoço", isMy: true),
                         SizedBox(height: 8,),
-                        Foods(name: "Pizza", type: "Carboidrato", meal: "Jantar"),
+                        Foods(name: "Pizza", type: "Carboidrato", meal: "Jantar", isMy: true),
                         SizedBox(height: 8,),
-                        Foods(name: "Banana", type: "Fruta", meal: "Café"),
+                        Foods(name: "Banana", type: "Fruta", meal: "Café", isMy: true),
                         SizedBox(height: 8,),
-                        Foods(name: "Laranja", type: "Fruta", meal: "Café"),
+                        Foods(name: "Laranja", type: "Fruta", meal: "Café", isMy: true,),
                       ],
                     ),
                   ),

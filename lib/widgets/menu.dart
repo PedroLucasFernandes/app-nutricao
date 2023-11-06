@@ -5,12 +5,14 @@ class Menu extends StatelessWidget {
   final String breakfast;
   final String lunch;
   final String dinner;
+  final bool isMy;
 
   const Menu({
       super.key,
       required this.breakfast, 
       required this.lunch, 
-      required this.dinner, 
+      required this.dinner,
+      required this.isMy,
     });
 
 
@@ -103,6 +105,7 @@ class Menu extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8,),
+            isMy ?
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -151,7 +154,7 @@ class Menu extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ) : SizedBox()
           ],
         ),
       ),

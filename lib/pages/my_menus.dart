@@ -43,19 +43,22 @@ class _MyMenusState extends State<MyMenus> {
                         Menu(
                           breakfast: "2 ovos cozidos",
                           lunch: "200 gramas de arroz e 150 de frango",
-                          dinner: "3 ovos com 100 gramas de arroz"
+                          dinner: "3 ovos com 100 gramas de arroz",
+                          isMy: true,
                         ),
                         SizedBox(height: 8,),
                         Menu(
                           breakfast: "1 copo de café e 1 pão com queijo",
                           lunch: "200 gramas de arroz, 100 de feijão e 2 linguiças",
-                          dinner: "100 gramas de carne com 150 gramas de arroz"
+                          dinner: "100 gramas de carne com 150 gramas de arroz",
+                          isMy: true,
                         ),
                         SizedBox(height: 8,),
                         Menu(
                           breakfast: "2 pão com presunto e queijo",
                           lunch: "2 pedaços de torta de frango com 3 conchas de feijão e 150 gramas de arroz",
-                          dinner: "2 ovos cozidos"
+                          dinner: "2 ovos cozidos",
+                          isMy: true,
                         ),
                       ],
                     ),
